@@ -53,8 +53,36 @@ export const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         color: '#ffffff'
-    }
+    },
 
+    spinnerView: {
+        alignItems: "center",
+        justifyContent: "center",
+        flex: 1
+    },
+
+    errorView: {
+        alignItems: "center",
+        justifyContent: "center",
+        flex: 1,
+        padding: 16
+    },
+
+    errorText: {
+        textAlign: 'center',
+        fontSize: 24
+    },
+
+    errorIcon: {
+        color: '#7159c1',
+        fontSize: 48
+    },
+
+    reloadText: {
+        marginTop: 16,
+        color: '#7b1fa2',
+        fontSize: 24
+    }
 
 
 });

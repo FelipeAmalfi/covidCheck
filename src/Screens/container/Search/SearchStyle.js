@@ -1,15 +1,13 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-    button: {
-        fontSize: 16,
-        fontWeight: '600',
-        width: 150,
-        alignSelf: 'center',
+
+    searchBox: {
+        margin: 8
     },
-    container: {
-        flex: 1,
-        justifyContent: 'center',
+
+    icon: {
+        marginLeft: 8
     },
     autocompleteContainer: {
         flex: 1,

@@ -1,41 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { TouchableOpacity } from 'react-native'
-import {
-    View,
-} from 'react-native';
-import { Text } from 'native-base'
+import { View } from 'react-native';
+import { Text, Item, Input } from 'native-base'
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import { FlatList } from 'react-native-gesture-handler';
 import Autocomplete from 'react-native-autocomplete-input'
 import { HeaderMain } from '../../components/Common/Header/Header'
-import Axios from 'axios'
 import { styles } from './SearchStyle'
-import { ScrollView } from 'react-native-gesture-handler';
+import { GlobalContext } from '../../../store/GlobalContext'
+import { InfoCard } from '../../components/Generic/InfoCard/InfoCard'
 
 
-const Home = () => {
-    const [countries, setCountries] = useState([])
-    const [countryNames, setCountryNames] = useState([])
+
+
+const Search = () => {
+    const countriesContext = useContext(GlobalContext)
     const [filteredCountries, setFilteredCountries] = useState([])
-    const [query, setQuery] = useState('')
-    useEffect(() => {
-        Axios.get('https://api.covid19api.com/summary')
-            .then(({ data }) => {
-                if (data) {
-                    let countryName = [];
-                    setCountries(data.Countries)
-                    data.Countries.forEach(element => {
-                        countryName.push(element.Country)
 
-                    });
-                    setCountries(data.Countries)
-                    setCountryNames(countryName)
-                }
-            })
-    }, [])
+    const renderItem = ({ item }) => {
+        return (
+            <InfoCard
+                country={item.Country}
+                confirmed={item.TotalConfirmed}
+                deaths={item.TotalDeaths}
+                recovered={item.TotalRecovered}
+            />
+        )
+    }
 
 
     function filterValue(text) {
         if (text) {
-            setFilteredCountries(countryNames.filter(element => element.toLowerCase().includes(text.toLowerCase())))
+            setFilteredCountries(countriesContext.info.Countries.filter(element => element.Country.toLowerCase().includes(text.toLowerCase())))
         } else {
             setFilteredCountries([])
         }
@@ -43,8 +39,8 @@ const Home = () => {
     return (
         <View>
             <HeaderMain title='Busca por país' />
-            <View style={styles.autocompleteContainer}>
-                <Autocomplete
+            <View >
+                {/* <Autocomplete
                     data={filteredCountries}
                     defaultValue={query}
                     placeholder={' Busque pelo país'}
@@ -54,6 +50,18 @@ const Home = () => {
                             <Text>{item}</Text>
                         </TouchableOpacity>
                     )}
+                /> */}
+                <View style={styles.searchBox}>
+                    <Item rounded >
+                        <Icon active name='search' size={20} style={styles.icon} />
+                        <Input placeholder='Busque pelo país'
+                            onChangeText={text => filterValue(text)} />
+                    </Item>
+                </View>
+                <FlatList
+                    data={filteredCountries}
+                    renderItem={item => renderItem(item)}
+                    keyExtractor={item => item.slug}
                 />
             </View>
         </View>
@@ -61,4 +69,4 @@ const Home = () => {
 }
 
 
-export default Home;
+export default Search;

@@ -5,7 +5,7 @@ import { styles } from './HeaderStyle'
 
 export const HeaderMain = ({ title }) => {
     return (
-        <Header style={styles.header}>
+        <Header style={styles.header} androidStatusBarColor={'#3f2f90'}>
             <Body>
                 <Text style={styles.headerTitle}>{title}</Text>
             </Body>

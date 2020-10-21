@@ -1,30 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { View } from 'react-native';
-
-import { styles, dynamicStyles } from './HomeStyle'
 import { Text, Icon, Card, CardItem } from 'native-base'
-import { HeaderMain } from '../../components/Common/Header/Header'
-import Axios from 'axios';
 import moment from 'moment'
 import 'moment/locale/pt-br'
+import { ScrollView } from 'react-native-gesture-handler';
+import { fetchSummary } from '../../../Service/mainService'
+import { GlobalContext } from '../../../store/GlobalContext'
+import { HeaderMain } from '../../components/Common/Header/Header'
+import { styles, dynamicStyles } from './HomeStyle'
+
 
 
 
 
 const Home = () => {
-    const [global, setGlobal] = useState(null)
-    const [lastUpdate, setLastUpdate] = useState(null)
     const coviDescription = 'A COVID-19 é uma doença causada pelo coronavírus, denominado SARS-CoV-2, que apresenta um espectro clínico variando de infecções assintomáticas a quadros graves. De acordo com a Organização Mundial de Saúde, a maioria (cerca de 80%) dos pacientes com COVID-19 podem ser assintomáticos ou oligossintomáticos (poucos sintomas), e aproximadamente 20% dos casos detectados requer atendimento hospitalar por apresentarem dificuldade respiratória, dos quais aproximadamente 5% podem necessitar de suporte ventilatório.'
+    const globalInfo = useContext(GlobalContext)
+    const { Global: global, Date: lastUpdate } = globalInfo.info
 
     useEffect(() => {
-        Axios.get('https://api.covid19api.com/summary')
+        fetchSummary()
             .then(({ data }) => {
                 if (data) {
-                    setGlobal(data.Global)
-                    setLastUpdate(data.Date)
+                    globalInfo.setInfo(data)
+
                 }
             })
     }, [])
+
 
 
     const SectionInfo = ({ icon, name, total, recent, color }) => {
@@ -56,7 +59,7 @@ const Home = () => {
                 <HeaderMain title='Estatísticas mundiais covid 19' />
 
                 {global &&
-                    <View>
+                    <ScrollView>
                         <View style={[styles.cardContainer, { marginBottom: 16 }]}>
                             <Card>
                                 <CardItem>
@@ -91,7 +94,7 @@ const Home = () => {
                             recent={{ recentMessage: 'Pessoas recuperadas recentemente: ', recentValue: global.NewRecovered }}
                             color={'#00c853'}
                         />
-                    </View>
+                    </ScrollView>
                 }
             </View>
         </>

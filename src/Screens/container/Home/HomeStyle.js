@@ -1,4 +1,3 @@
-import { Right } from 'native-base';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -44,6 +43,16 @@ export const styles = StyleSheet.create({
         fontSize: 16,
         marginRight: -8
 
+    },
+
+    headerAndroid: {
+        backgroundColor: '#7159c1'
+    },
+
+    headerTitle: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#ffffff'
     }
 
 
@@ -57,9 +66,5 @@ export const dynamicStyles = (props) => StyleSheet.create({
         fontSize: 32,
         fontWeight: 'bold',
     },
-
-
-
-
 
 });

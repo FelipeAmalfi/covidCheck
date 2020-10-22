@@ -1,11 +1,10 @@
 
 import React, { useEffect, useContext } from 'react';
-
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../Screens/container/Home/Home'
 import Search from '../Screens/container/Search/Search'
 import Ranking from '../Screens/container/Ranking/Ranking'
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import { GlobalContext } from '../store/GlobalContext'
 
 

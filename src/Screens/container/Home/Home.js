@@ -1,14 +1,13 @@
 import React, { useEffect, useState, useContext, useMemo, useCallback } from 'react';
-import { ActivityIndicator, View } from 'react-native';
+import { View } from 'react-native';
 import { Text, Icon, Card, CardItem, Spinner } from 'native-base'
-import moment from 'moment'
 import 'moment/locale/pt-br'
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { fetchSummary } from '../../../Service/mainService'
 import { GlobalContext } from '../../../store/GlobalContext'
 import { HeaderMain } from '../../components/Common/Header/Header'
 import { SectionInfo } from './SectionInfo'
-import { styles, dynamicStyles } from './HomeStyle'
+import { styles } from './HomeStyle'
 
 
 

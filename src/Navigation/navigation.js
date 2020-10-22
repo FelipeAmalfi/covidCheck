@@ -21,7 +21,6 @@ export const MainNavigation = () => {
 
     const globalInfo = useContext(GlobalContext)
 
-    useEffect(() => console.log(globalInfo.info.error), [globalInfo])
 
     return (
         <Tab.Navigator

@@ -40,17 +40,6 @@ const Search = () => {
         <View>
             <HeaderMain title='Busca por país' />
             <View >
-                {/* <Autocomplete
-                    data={filteredCountries}
-                    defaultValue={query}
-                    placeholder={' Busque pelo país'}
-                    onChangeText={text => filterValue(text)}
-                    renderItem={({ item, i }) => (
-                        <TouchableOpacity onPress={() => setQuery(text)}>
-                            <Text>{item}</Text>
-                        </TouchableOpacity>
-                    )}
-                /> */}
                 <View style={styles.searchBox}>
                     <Item rounded >
                         <Icon active name='search' size={20} style={styles.icon} />

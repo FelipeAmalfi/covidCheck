@@ -1,10 +1,8 @@
 import React, { useState, useContext } from 'react';
-import { TouchableOpacity } from 'react-native'
 import { View } from 'react-native';
-import { Text, Item, Input } from 'native-base'
+import { Item, Input } from 'native-base'
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { FlatList } from 'react-native-gesture-handler';
-import Autocomplete from 'react-native-autocomplete-input'
 import { HeaderMain } from '../../components/Common/Header/Header'
 import { styles } from './SearchStyle'
 import { GlobalContext } from '../../../store/GlobalContext'

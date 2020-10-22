@@ -8,7 +8,7 @@ CovidCheck é um aplicativo, para exibir informações sobre o covid 19, mostran
 - Busca por país mostrando os dados de casos confirmados, mortes e pessoas recuperadas.
 
 
-#Tecnologias
+Tecnologias
 - React-native
 - Context Api
 - native-base
